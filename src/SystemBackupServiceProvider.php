@@ -9,11 +9,11 @@ class SystemBackupServiceProvider extends ServiceProvider
     public function settingForm()
     {
         return $this->baseSettingForm()
-            ->api('post:' . admin_url('owl-menu-backup'))
-            ->initApi('get:' . admin_url('owl-menu-backup'))
+            ->api('post:' . admin_url('menu-backup'))
+            ->initApi('get:' . admin_url('menu-backup'))
             ->wrapWithPanel(false)
             ->actions([])
-            ->reload('owl-menu-backup-list')
+            ->reload('menu-backup-list')
             ->tabs([
                 amisMake()->Tab()->title('添加备份')->body([
                     amisMake()->TextControl('title', '备份名称')->required(),
@@ -32,7 +32,7 @@ class SystemBackupServiceProvider extends ServiceProvider
                     ]),
                 ]),
                 amisMake()->Tab()->title('备份记录')->body([
-                    amisMake()->Service()->api('get:' . admin_url('owl-menu-backup'))->id('owl-menu-backup-list')->body([
+                    amisMake()->Service()->api('get:' . admin_url('menu-backup'))->id('menu-backup-list')->body([
                         amisMake()->Table()->source('${backups}')->footable()->columns([
                             amisMake()->TableColumn('title', '名称'),
                             amisMake()->TableColumn('file', '文件名'),
@@ -42,13 +42,13 @@ class SystemBackupServiceProvider extends ServiceProvider
                             amisMake()
                                 ->AjaxAction()
                                 ->label('恢复')
-                                ->api('put:' . admin_url('owl-menu-backup'))
+                                ->api('put:' . admin_url('menu-backup'))
                                 ->confirmText('恢复备份, 将会覆盖现有数据, 确定恢复吗?'),
                             amisMake()
                                 ->AjaxAction()
                                 ->label('删除')
-                                ->api('delete:' . admin_url('owl-menu-backup') . '?file=${file}')
-                                ->reload('owl-menu-backup-list')
+                                ->api('delete:' . admin_url('menu-backup') . '?file=${file}')
+                                ->reload('menu-backup-list')
                                 ->confirmText('确定删除吗?'),
                         ]),
                     ]),
