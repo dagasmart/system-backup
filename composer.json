@@ -1,0 +1,32 @@
+{
+    "name": "dagasmart/system-backup",
+    "alias": "系统备份",
+    "description": "系统备份扩展包",
+    "type": "library",
+    "keywords": ["bizadmin", "extension"],
+    "homepage": "https://github.com/dagasmart/system-backup",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "dagasmart",
+            "email": "dagasmart@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.0",
+        "dagasmart/bizadmin": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "DagaSmart\\SystemBackup\\": "src/"
+        }
+    },
+    "extra": {
+        "bizadmin": "DagaSmart\\SystemBackup\\SystemBackupServiceProvider",
+        "laravel": {
+            "providers": [
+                "DagaSmart\\SystemBackup\\SystemBackupServiceProvider"
+            ]
+        }
+    }
+}
